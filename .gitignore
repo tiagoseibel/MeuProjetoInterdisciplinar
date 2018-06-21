@@ -23,22 +23,15 @@
 hs_err_pid*
 
 # Diretorios de compilacao Java
-/Bestcard/nbproject
 /Bestcard/build
 /Bestcard/dist
-/Bestcard/build.xml
 
-/Bestcard/Bestcard-ejb/nbproject
 /Bestcard/Bestcard-ejb/build
 /Bestcard/Bestcard-ejb/dist/
-/Bestcard/Bestcard-ejb/build.xml
 
-/Bestcard-shared/nbproject
 /Bestcard-shared/build
 /Bestcard-shared/dist
-/Bestcard-shared/build.xml
 
-/Bestcard-web/nbproject
 /Bestcard-web/build
 /Bestcard-web/dist
-/Bestcard-web/build.xml
+
