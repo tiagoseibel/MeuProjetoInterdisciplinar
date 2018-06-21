@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script type="text/javascript">
+            var URL = "http://localhost:8080/bestcard-web/registrar-compra";
+
+            function registrarCompra(oForm) {
+
+                var formData = {};
+                formData["id"] = Number(oForm.id_compra.value);
+                formData["id_cliente"] = Number(oForm.id_cliente.value);
+                formData["data_compra"] = oForm.data_compra.value;
+                formData["nome_loja"] = oForm.nome_loja.value;
+                formData["valor_compra"] = Number(oForm.valor_compra.value);
+
+                var http = new XMLHttpRequest();
+
+                http.onreadystatechange = function ()
+                {
+                    if (this.readyState === 4 && this.status === 200) {
+                        parseJson(this.responseText);
+                    }
+                    if (this.readyState === 4 && this.status !== 200) {
+                        document.getElementById("result").innerHTML = "Erro: " + this.statusText;
+                    }
+                    if (this.readyState === 3) {
+                        document.getElementById("result").innerHTML = "Aguarde...";
+                    }
+                };
+
+                http.open("POST", URL);
+                http.setRequestHeader("Content-type", "application/json");
+                http.send( JSON.stringify(formData) );
+            }
+
+            function parseJson(jsonData) {
+                var obj = JSON.parse(jsonData);
+                document.getElementById("result").innerHTML = "" + obj.message;
+            }
+
+        </script>
+
+    </head>
+    <body>
+            <br />
+            <span id="result"></span>
+            <br />
+            
+        <form name="form1" method="post" 
+              action="/bestcard-web/registrar-compra">
+            <label>ID compra</label>
+            <input type="text" name="id_compra" />
+            <br>
+            <label>ID cliente</label>
+            <input type="text" name="id_cliente" />
+            <br>
+            <label>Data</label>
+            <input type="text" name="data_compra" />
+            <br>
+            <label>Nome loja</label>
+            <input type="text" name="nome_loja" />
+            <br>
+            <label>Valor compra</label>
+            <input type="text" name="valor_compra" />
+            <br>            
+            <input type="button" value="Comprar" onclick="registrarCompra(this.form)">
+        </form>
+    </body>
+</html>
